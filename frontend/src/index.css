@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #0a0a0a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.05);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #2563eb;
+  --accent-purple: #8b5cf6;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] text-slate-100 font-['Inter'] antialiased overflow-x-hidden selection:bg-blue-500/30;
+    /* Subtle radial gradient for depth, not flashy */
+    background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Inter'] tracking-tight text-slate-50;
+  }
+
+  code, pre {
+    @apply font-['JetBrains_Mono'];
+  }
+}
+
+@layer components {
+  /* Enterprise-grade Card */
+  .glass-panel {
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-2xl transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply glass-panel p-6 hover:border-white/[0.12] hover:bg-white/[0.03];
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Professional Inputs */
+  .input-futuristic {
+    @apply bg-black/40 border border-white/[0.1] rounded-xl px-4 py-3 outline-none
+           transition-all duration-200 focus:border-blue-500/50 focus:bg-black/60
+           focus:ring-2 focus:ring-blue-500/20 text-slate-200 text-sm
+           placeholder:text-slate-500;
+  }
+
+  /* Subtle Status Indicators */
+  .status-pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border;
+  }
+
+  .status-pill-active {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/20;
+  }
+
+  .status-pill-inactive {
+    @apply bg-slate-500/10 text-slate-400 border-slate-500/20;
+  }
+  
+  .status-pill-error {
+    @apply bg-red-500/10 text-red-400 border-red-500/20;
+  }
+
+  /* Typography utilities */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-200 to-slate-400;
+  }
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500;
+  }
+}
+
+/* Refined Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-700/50 rounded-full transition-colors;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
