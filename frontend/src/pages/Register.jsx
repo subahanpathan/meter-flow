@@ -27,7 +27,15 @@ const Register = () => {
       login(data.data.user, data.data.accessToken, data.data.refreshToken);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      const responseData = err.response?.data;
+      const validationErrors = responseData?.errors;
+
+      if (Array.isArray(validationErrors) && validationErrors.length > 0) {
+        // Show readable validation feedback from express-validator.
+        setError(validationErrors.map((item) => item.msg).join(' '));
+      } else {
+        setError(responseData?.message || 'Registration failed');
+      }
     } finally {
       setLoading(false);
     }

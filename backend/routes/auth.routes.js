@@ -29,9 +29,10 @@ const authLimiter = rateLimit({
 });
 
 // Stricter limiter specifically for registration to prevent abuse
+const registerMaxAttempts = process.env.NODE_ENV === 'production' ? 5 : 100;
 const registerLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // 5 registrations per IP per window
+  max: registerMaxAttempts,
   message: 'Too many registration attempts from this IP, please try again later',
   standardHeaders: true,
   legacyHeaders: false,
