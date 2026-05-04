@@ -19,6 +19,7 @@ import api from '../services/api.service';
 import UsageChart from '../components/UsageChart';
 import FloatingCard from '../components/ui/FloatingCard';
 import NeonButton from '../components/ui/NeonButton';
+import { exportToCSV } from '../utils/export';
 
 const StatCard = ({ title, value, change, trend, icon: Icon }) => (
   <FloatingCard className="p-5">
@@ -81,7 +82,10 @@ const Dashboard = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-3 py-2 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-lg text-sm text-white transition-colors">
+          <button 
+            onClick={() => exportToCSV(logs, 'meterflow-dashboard-logs.csv')}
+            className="flex items-center gap-2 px-3 py-2 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-lg text-sm text-white transition-colors"
+          >
             <Download size={16} className="text-slate-400" />
             <span>Export CSV</span>
           </button>

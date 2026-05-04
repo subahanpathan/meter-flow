@@ -25,6 +25,7 @@ import {
 import api from '../services/api.service';
 import FloatingCard from '../components/ui/FloatingCard';
 import NeonButton from '../components/ui/NeonButton';
+import { exportToCSV } from '../utils/export';
 
 const COLORS = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'];
 
@@ -74,7 +75,7 @@ const Analytics = () => {
             <Filter size={16} className="text-slate-400" />
             <span>Filter</span>
           </button>
-          <NeonButton variant="primary">
+          <NeonButton onClick={() => exportToCSV(logs, 'meterflow-analytics-report.csv')} variant="primary">
             <Download size={16} />
             <span>Export Report</span>
           </NeonButton>
